@@ -1,3 +1,6 @@
+import inquirer from 'inquirer';
+
+
 const contaBancaria = {
     titular: "Anthony",
     saldo: 1000,
@@ -22,3 +25,45 @@ const contaBancaria = {
         }
     }
 }
+
+const clienteX = {
+    titular: "Anthony",
+    conta: contaBancaria
+}
+
+
+function exibirMenu(){
+    console.log("\nEscolha uma opção:");
+    console.log("1. Ver saldo");
+    console.log("2. Fazer um saque");
+    console.log("3. Fazer um depósito");
+    console.log("4. Sair");
+}
+
+function getInteracao() {
+    exibirMenu();
+    rl.question("Digite sua escolha: ", (escolha) => {
+        switch (escolha) {
+            case "1":
+                mostrarSaldo(clienteX);
+                break;
+            case "2":
+                efetuarSaque(clienteX);
+                break;
+            case "3":
+                efetuarDeposito(clienteX)
+                break;
+            case "4":
+                console.log("Finalizando operacao.");
+                rl.close;
+                break;
+            default:
+                console.log("Opção inválida. Por favor, tente novamente.");
+                getInteracao();
+        }
+    })
+}
+
+
+console.log("Bem-vindo ao sistema bancario!");
+getInteracao();
